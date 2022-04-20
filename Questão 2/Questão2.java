@@ -1,33 +1,52 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+2) Faça um Programa que peça as quatro notas de 10 alunos, calcule e
+armazene numa lista a média de cada aluno, imprima o número de alunos
+com média maior ou igual a 7.0.
  */
 package questão.pkg2;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
  *
- * @author victo
+ * @author Igor_
  */
 public class Questão2 {
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
-        int qtdCamisas = 0;
-        String UF;
-        float precoFinal = 0.0f;
-        while (qtdCamisas < 1 || qtdCamisas >5){
-            System.out.println("Quantas camisas você deseja comprar?");
-            qtdCamisas = entrada.nextInt(); // é tipo o scanf, mas só pega dado inteiro
-        }
-        System.out.println("Em qual estado você mora?");
-        UF = entrada.next();
-        precoFinal = qtdCamisas * 30.0f;
-        if (!UF.equals("BA")){ //A exclamação quer dizer "se a UF for DIFERENTE de BA"
-            precoFinal += 20.0f;
-        }
-        System.out.println("O preço da compra é R$ " + precoFinal);
+        Scanner scanner = new Scanner(System.in);
+        List<List<Double>> medias = new ArrayList<List<Double>>();
+        List<List<Double>> aprovados = new ArrayList<List<Double>>();
+        int contador = 0;
+        Double notaAluno = 0.0;
+        do{
+            for (int i = 0; i <4 ; i++) {
+                List<Double> media = new ArrayList<Double>();
+                System.out.println("Insira as notas do " + (contador + 1) + "º estudante");
+                Double nota = scanner.nextDouble();
+                notaAluno = notaAluno + nota;
+                if(i == 3){
+                    Double mediaAluno = notaAluno/4;
+                    notaAluno = 0.0;
+                    System.out.println("Sua média é: " + mediaAluno);
+                    if(mediaAluno >= 7.0){
+                        media.add(mediaAluno);
+                        aprovados.add(media);
+                        medias.add(media);
+                    }else{
+                        media.add(mediaAluno);
+                        medias.add(media);
+                    }
+                }
+            }
+            
+            contador++;
+        }while(contador <10);
+        System.out.println("Um total de " + aprovados.size() + " estudantes foram aprovados!");
     }
-    
 }
